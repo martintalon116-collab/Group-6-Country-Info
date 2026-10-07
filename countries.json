@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1791376068201,
+    "country": "Republic of the Philippines",
+    "capital": "Manila",
+    "language": "English",
+    "currency": "Philippine peso (₱)",
+    "notes": "The Philippines is a republic with Manila as its capital and Filipino and English as official languages. The peso is the currency, and electronic components, business process outsourcing and remittances lead its foreign earnings."
+  },
+  {
+    "id": 1791376082384,
+    "country": "Republic of China (Taiwan)",
+    "capital": "Taipei",
+    "language": "Chinese",
+    "currency": "New Taiwan dollar ($)",
+    "notes": "Taiwan is governed separately from the People's Republic of China, which claims it, and most states hold no formal relations with it. Taipei is its capital, Mandarin is the official language, and semiconductors dominate its export earnings."
+  },
+  {
+    "id": 1791376093450,
+    "country": "Canada",
+    "capital": "Ottawa",
+    "language": "English",
+    "currency": "Canadian dollar ($)",
+    "notes": "Canada is a Commonwealth realm with Ottawa as its capital and English and French as official languages. The Canadian dollar is the currency, and energy, minerals, forestry, manufacturing and services support a mostly southern population."
+  }
+]

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Country</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #f9f9f9;
+        color: #333;
+      }
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 8px 0;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+      button {
+        cursor: pointer;
+        background: #27ae60;
+        color: white;
+        border: none;
+        border-radius: 4px;
+      }
+      button:hover {
+        background: #219653;
+      }
+      .cancel-btn {
+        background: #95a5a6;
+      }
+      .cancel-btn:hover {
+        background: #7f8c8d;
+      }
+      textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 8px;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        resize: vertical;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Edit country</h2>
+
+      <h4>Country:</h4>
+      <input
+        id="country"
+        placeholder="Country"
+      />
+      <h4>Capital:</h4>
+      <input
+        id="capital"
+        placeholder="Capital"
+      />
+      <h4>Language:</h4>
+      <input
+        id="language"
+        placeholder="Language"
+      />
+      <h4>Currency:</h4>
+      <input
+        id="currency"
+        placeholder="Currency"
+      />
+      <h4>Notes:</h4>
+      <textarea
+        id="notes"
+        placeholder="Notes"
+        rows="5"
+      /></textarea>
+      <button onclick="saveCountry()">Save</button>
+      <button
+        class="cancel-btn"
+        onclick="location.href = 'index.html'"
+      >
+        Cancel
+      </button>
+    </div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const countryId = urlParams.get('id');
+
+      async function loadCountryData() {
+        const res = await fetch('/api/countries');
+        const countries = await res.json();
+        const countryItem = countries.find((c) => c.id == countryId);
+        if (countryItem) {
+          document.getElementById('country').value = countryItem.country || '';
+          document.getElementById('capital').value = countryItem.capital || '';
+          document.getElementById('language').value =
+            countryItem.language || '';
+          document.getElementById('currency').value =
+            countryItem.currency || '';
+          document.getElementById('notes').value = countryItem.notes || '';
+        }
+      }
+
+      async function saveCountry() {
+        const country = document.getElementById('country').value;
+        const capital = document.getElementById('capital').value;
+        const language = document.getElementById('language').value;
+        const currency = document.getElementById('currency').value;
+        const notes = document.getElementById('notes').value;
+
+        await fetch(`/api/countries/${countryId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ country, capital, language, currency, notes }),
+        });
+
+        location.href = 'index.html';
+      }
+
+      loadCountryData();
+    </script>
+  </body>
+</html>
